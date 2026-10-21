@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -48,9 +48,42 @@ jobs:
       - name: Build debug APK
         run: bash ./gradlew :app:assembleDebug --stacktrace
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: Codex-Manager-debug
-          path: app/build/outputs/apk/debug/*.apk
-          if-no-files-found: error
+      - name: Name APK
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import os
+          import re
+          import shutil
+
+          text = Path('app/build.gradle').read_text(encoding='utf-8')
+          version = re.search(r'versionName\s+"([^"/\\]+)"', text).group(1)
+          apk = Path('app/build/outputs/apk/debug/app-debug.apk')
+          output = Path('dist')
+          output.mkdir(exist_ok=True)
+          name = f'Codex Manager-{version}.apk'
+          shutil.copy2(apk, output / name)
+          with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as env:
+              env.write(f'APK_NAME={name}\n')
+          PY
+
+      - name: Publish downloadable APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          GH_PROMPT_DISABLED: '1'
+        run: |
+          if ! gh release view latest-build >/dev/null 2>&1; then
+            gh release create latest-build --target "$GITHUB_SHA" --title "Codex Manager - Latest Build" --notes "Automatically built by GitHub Actions. Download the APK asset below." --prerelease
+          fi
+          gh release upload latest-build "dist/$APK_NAME" --clobber
+          gh release edit latest-build --title "${APK_NAME%.apk}" --notes "Automatically built by GitHub Actions from commit $GITHUB_SHA. Download the APK asset below."
+          python3 - <<'PY'
+          import os
+          from urllib.parse import quote
+          name = os.environ['APK_NAME']
+          repo = os.environ['GITHUB_REPOSITORY']
+          url = f"https://github.com/{repo}/releases/download/latest-build/{quote(name)}"
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as summary:
+              summary.write(f'### Build complete\n\n[Download {name}]({url})\n')
+          PY
