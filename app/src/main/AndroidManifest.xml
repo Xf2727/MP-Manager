@@ -68,7 +68,8 @@
            android:name="io.github.ratul.topactivity.App"
            android:icon="@mipmap/ic_launcher"
            android:label="Codex Manager">
-        <activity
+        <activity android:name="io.github.abdurazaaqmohammed.ui.activities.InteractionActivity" android:exported="false" />
+<activity
             android:theme="@style/Theme.Material3.DayNight.NoActionBar"
             android:name="io.github.abdurazaaqmohammed.MPManager.MainActivity"
             android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|uiMode|density|layoutDirection"

@@ -979,7 +979,7 @@ public class MainActivity extends BaseActivity implements PaneNavigationControll
                 openSidebarDrawer();
         };
 
-        findViewById(R.id.sidebarTitle).setOnClickListener(v -> uiHelper.showAboutDialog());
+        findViewById(R.id.sidebarTitle).setOnClickListener(v -> startActivity(new Intent(this, io.github.abdurazaaqmohammed.ui.activities.InteractionActivity.class)));
         setupSidebar();
         bottomBarGestureDetector = new GestureDetectorCompat(this,
                 new GestureDetector.SimpleOnGestureListener() {

@@ -566,7 +566,7 @@ public class MainFilesArrayAdapter extends RecyclerView.Adapter<MainFilesArrayAd
             holder.appliedBackgroundColor = background;
         }
         try {
-            holder.fileNameView.setTextColor(context.isGreen(pane1, fileName) ? GREEN_NAME : holder.defaultNameColor);
+            holder.fileNameView.setTextColor(selected ? Color.WHITE : (context.isGreen(pane1, fileName) ? GREEN_NAME : holder.defaultNameColor));
         } catch (Exception ignored) {}
         final int finalPosition = position;
         final File finalFile = file;
