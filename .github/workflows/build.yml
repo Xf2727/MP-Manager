@@ -1,28 +1,55 @@
 name: Build Codex Manager
+
 on:
   workflow_dispatch:
   push:
     branches: [main]
+
 permissions:
   contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
-      - uses: android-actions/setup-android@v3
-        with: 
+
+      - name: Set up Android
+        uses: android-actions/setup-android@v3
+        with:
           packages: 'platform-tools'
-      - name: Install Android SDK
-        run: sdkmanager --channel=3 "platforms;android-36" "platforms;android-37" "build-tools;37.0.0"
-      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Install Android SDK 36
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Adjust app to SDK 36
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('app/build.gradle')
+          text = path.read_text(encoding='utf-8')
+          text = re.sub(r'\bcompileSdk\s+37\b', 'compileSdk 36', text)
+          text = re.sub(r'\btargetSdk\s+37\b', 'targetSdk 36', text)
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
       - name: Build debug APK
         run: bash ./gradlew :app:assembleDebug --stacktrace
-      - uses: actions/upload-artifact@v4
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
           name: Codex-Manager-debug
           path: app/build/outputs/apk/debug/*.apk
