@@ -887,7 +887,7 @@ public class MainActivity extends BaseActivity implements PaneNavigationControll
         // background-priority thread, so it never competes with the startup listing.
         runWhenIdle(() -> new Thread(() -> {
             Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-            File frameworks = new File("/sdcard/MP Manager/frameworks/");
+            File frameworks = new File("/sdcard/Codex Manager/frameworks/");
             if (frameworks.exists() || frameworks.mkdirs()) {
                 int[] resourceIds = {
                         R.raw.android_23, R.raw.android_24, R.raw.android_25,

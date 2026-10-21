@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">MP Manager</string>
+    <string name="app_name" translatable="false">Codex Manager</string>
     <string name="success_saved">File saved successfully to %s</string>
     <string name="enable_logs" >Save logs</string>
     <string name="sign_apk_after_merge">Sign the APK after merging</string>
@@ -436,7 +436,7 @@
     <string name="no_apk_files_found">No APK files found in archive</string>
     <string name="manage_bottom_bar">Manage Bottom Bar</string>
     <string name="delete_button">Delete Button</string>
-    <string name="termux_perm"><![CDATA[Note: You need to grant permission for MP Manager to be able to send command to Termux\n(Permissions > Additional Permissions > Run commands in Termux environment)]]></string>
+    <string name="termux_perm"><![CDATA[Note: You need to grant permission for Codex Manager to be able to send command to Termux\n(Permissions > Additional Permissions > Run commands in Termux environment)]]></string>
     <string name="editor_settings">Editor Settings</string>
     <string name="icon_changed">Icon changed</string>
     <string name="icon_not_found">Could not find the launcher icon resource in this APK</string>
@@ -728,13 +728,13 @@ Layout Inspector
     <string name="root_install">Root install</string>
     <string name="shizuku_silent_install">Shizuku silent install</string>
     <string name="installer_source">Installer package (install attribution)</string>
-    <string name="installer_source_self">Self (MP Manager)</string>
+    <string name="installer_source_self">Self (Codex Manager)</string>
     <string name="installer_source_initiator">App that shared this file</string>
     <string name="installer_source_play">Google Play Store (spoof, needs root/Shizuku)</string>
     <string name="installer_source_shell">Shell (needs root/Shizuku, for HyperOS/MIUI)</string>
     <string name="installer_source_custom">Custom package…</string>
     <string name="installer_custom_pkg">Custom installer package</string>
-    <string name="installer_spoof_note">Sets the package Android records as the installer (getInstallSourceInfo), not the install source. Spoofing only sticks with root/Shizuku silent install. Without privilege the system records MP Manager itself. Play spoof stops apps that check the installer from asking to be reinstalled from Play; it does not fake Play signatures or licensing. The install initiator still shows the real privileged caller (com.android.shell): Android does not allow spoofing it.</string>
+    <string name="installer_spoof_note">Sets the package Android records as the installer (getInstallSourceInfo), not the install source. Spoofing only sticks with root/Shizuku silent install. Without privilege the system records Codex Manager itself. Play spoof stops apps that check the installer from asking to be reinstalled from Play; it does not fake Play signatures or licensing. The install initiator still shows the real privileged caller (com.android.shell): Android does not allow spoofing it.</string>
     <string name="apk_compare_newer">installed %1$s — this APK is newer</string>
     <string name="apk_compare_older">installed %1$s — this APK is older</string>
     <string name="apk_compare_same">installed %1$s — identical version</string>
@@ -1094,7 +1094,7 @@ Layout Inspector
     <string name="rec_capturing_sub">Tap the recorder to stop</string>
     <string name="locate_failed">Could not locate this file</string>
     <string name="locate_resolving">Resolving file…</string>
-    <string name="shared_entry_title">MP Manager</string>
+    <string name="shared_entry_title">Codex Manager</string>
     <string name="shared_entry_subtitle">Choose what to do with this file</string>
     <string name="shared_entry_file_icon">File icon</string>
     <string name="shared_entry_unknown">Shared file</string>
@@ -1137,8 +1137,8 @@ Layout Inspector
     <string name="storage_roundtrip_done">Round-trip done</string>
     <string name="storage_nothing_selected">Nothing selected, tap Load first</string>
     <string name="storage_enable_autoclear">Enable auto-clear service</string>
-    <string name="storage_autoclear_need">Auto-clear needs the MP Manager Cache Cleaner accessibility service. Enable it in system settings, then start again.</string>
-    <string name="storage_autoclear_need_elevated">Auto-clear needs the MP Manager Cache Cleaner accessibility service. Root/Shizuku found, it can be enabled automatically.</string>
+    <string name="storage_autoclear_need">Auto-clear needs the Codex Manager Cache Cleaner accessibility service. Enable it in system settings, then start again.</string>
+    <string name="storage_autoclear_need_elevated">Auto-clear needs the Codex Manager Cache Cleaner accessibility service. Root/Shizuku found, it can be enabled automatically.</string>
     <string name="storage_enable_auto">Enable automatically</string>
     <string name="storage_open_settings">Open settings</string>
     <string name="storage_service_enabled_again">Service enabled, tap auto-clear again</string>
@@ -1254,7 +1254,7 @@ Layout Inspector
     <string name="wifi_save_failed">Save failed</string>
     <string name="wifi_qr_failed">QR failed</string>
     <string name="wifi_nothing_to_export">Nothing to export</string>
-    <string name="wifi_exported">Exported to Download/MP Manager</string>
+    <string name="wifi_exported">Exported to Download/Codex Manager</string>
     <string name="wifi_export_failed">Export failed</string>
     <string name="wifi_networks_n">%1$d networks</string>
     <string name="wifi_root_needed_passwords">Root needed for saved passwords</string>
@@ -1382,7 +1382,7 @@ Layout Inspector
     <string name="toggle_hex_keypad">Toggle hex keypad</string>
     <string name="height_15_90">Height %% (15–90)</string>
     <string name="toast_message">Toast message</string>
-    <string name="def_msg">Hello from MP Manager</string>
+    <string name="def_msg">Hello from Codex Manager</string>
     <string name="duration">Duration</string>
     <string name="position">Position</string>
     <string name="def">Default</string>
@@ -1726,7 +1726,7 @@ Layout Inspector
     <string name="dex_export_jar">Jar (Java sources)</string>
     <string name="dex_export_choose_folder">Select export folder</string>
     <string name="dex_export_none">No classes selected</string>
-    <string name="ai_warning">Warning: AI-generated responses are provided solely for informational purposes and may be inaccurate, incomplete, outdated, or unsafe. You are solely responsible for reviewing, verifying, and using any AI output. To the fullest extent permitted by law, the developer of MP Manager is not responsible for any loss, damage, or consequence arising from the use of this AI feature or from reliance on its output. API usage is subject to Google\'s Gemini terms of service, and you are responsible for any charges incurred through your API key.</string>
+    <string name="ai_warning">Warning: AI-generated responses are provided solely for informational purposes and may be inaccurate, incomplete, outdated, or unsafe. You are solely responsible for reviewing, verifying, and using any AI output. To the fullest extent permitted by law, the developer of Codex Manager is not responsible for any loss, damage, or consequence arising from the use of this AI feature or from reliance on its output. API usage is subject to Google\'s Gemini terms of service, and you are responsible for any charges incurred through your API key.</string>
     <string name="agree">Agree</string>
     <string name="ai_usage_disclaimer">AI Usage Disclaimer</string>
     <string name="edpref_display">Display Settings</string>

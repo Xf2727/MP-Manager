@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">MP Manager</string>
+    <string name="app_name" translatable="false">Codex Manager</string>
     <string name="success_saved">تم حفظ الملف بنجاح في %s</string>
     <string name="enable_logs">حفظ السجلات</string>
     <string name="sign_apk_after_merge">توقيع ملف APK بعد الدمج</string>
@@ -400,7 +400,7 @@
     <string name="no_apk_files_found">لم يتم العثور على ملفات APK في الأرشيف</string>
     <string name="manage_bottom_bar">إدارة الشريط السفلي</string>
     <string name="delete_button">زر الحذف</string>
-    <string name="termux_perm"><![CDATA[ملاحظة: تحتاج إلى منح إذن لـ MP Manager ليتمكن من إرسال أمر إلى Termux\n(الأذونات > أذونات إضافية > تشغيل الأوامر في بيئة Termux)]]></string>
+    <string name="termux_perm"><![CDATA[ملاحظة: تحتاج إلى منح إذن لـ Codex Manager ليتمكن من إرسال أمر إلى Termux\n(الأذونات > أذونات إضافية > تشغيل الأوامر في بيئة Termux)]]></string>
     <string name="editor_settings">إعدادات المحرر</string>
     <string name="icon_changed">تم تغيير الأيقونة</string>
     <string name="icon_not_found">تعذر العثور على مورد أيقونة المشغل في ملف APK هذا</string>
@@ -671,12 +671,12 @@
     <string name="root_install">تثبيت بالروت</string>
     <string name="shizuku_silent_install">تثبيت صامت عبر شيزوكو (Shizuku)</string>
     <string name="installer_source">مصدر التثبيت (نسب التثبيت)</string>
-    <string name="installer_source_self">نفسه (MP Manager)</string>
+    <string name="installer_source_self">نفسه (Codex Manager)</string>
     <string name="installer_source_play">متجر جوجل بلاي (وهمي، يحتاج روت/شيزوكو)</string>
     <string name="installer_source_shell">Shell (يحتاج روت/شيزوكو، لأنظمة HyperOS/MIUI)</string>
     <string name="installer_source_custom">حزمة مخصصة…</string>
     <string name="installer_custom_pkg">حزمة مثبت مخصصة</string>
-    <string name="installer_spoof_note">التزييف يثبت فقط عند التثبيت الصامت عبر روت/شيزوكو. بدون صلاحيات، يقوم النظام بتسجيل MP Manager نفسه. يمنع تزييف متجر بلاي التطبيقات التي تتحقق من المثبت من طلب إعادة التثبيت من متجر بلاي؛ ولكنه لا يزيف توقيعات أو تراخيص متجر بلاي.</string>
+    <string name="installer_spoof_note">التزييف يثبت فقط عند التثبيت الصامت عبر روت/شيزوكو. بدون صلاحيات، يقوم النظام بتسجيل Codex Manager نفسه. يمنع تزييف متجر بلاي التطبيقات التي تتحقق من المثبت من طلب إعادة التثبيت من متجر بلاي؛ ولكنه لا يزيف توقيعات أو تراخيص متجر بلاي.</string>
     <string name="install_allow_test">السماح بحزم الاختبار</string>
     <string name="install_allow_downgrade">السماح بالرجوع لإصدار أقدم</string>
     <string name="install_grant_all">منح كافة الأذونات المطلوبة عند التثبيت</string>
@@ -1012,7 +1012,7 @@
     <string name="rec_capturing_sub">اضغط على المُسجل للإيقاف</string>
     <string name="locate_failed">تعذر تحديد موقع هذا الملف</string>
     <string name="locate_resolving">جارٍ فحص الملف…</string>
-    <string name="shared_entry_title">MP Manager</string>
+    <string name="shared_entry_title">Codex Manager</string>
     <string name="shared_entry_subtitle">اختر ما تود فعله بهذا الملف</string>
     <string name="shared_entry_file_icon">أيقونة الملف</string>
     <string name="shared_entry_unknown">ملف مشترك</string>
@@ -1055,8 +1055,8 @@
     <string name="storage_roundtrip_done">تم اختبار الذهاب والإياب</string>
     <string name="storage_nothing_selected">لم يتم تحديد شيء، اضغط على تحميل أولاً</string>
     <string name="storage_enable_autoclear">تمكين خدمة المسح التلقائي</string>
-    <string name="storage_autoclear_need">المسح التلقائي يحتاج إلى خدمة إمكانية الوصول الخاصة بمنظف ذاكرة التخزين المؤقت لـ MP Manager. قم بتمكينها في إعدادات النظام، ثم ابدأ مرة أخرى.</string>
-    <string name="storage_autoclear_need_elevated">المسح التلقائي يحتاج إلى خدمة إمكانية الوصول الخاصة بمنظف ذاكرة التخزين المؤقت لـ MP Manager. تم العثور على روت/شيزوكو، يمكن تمكينها تلقائياً.</string>
+    <string name="storage_autoclear_need">المسح التلقائي يحتاج إلى خدمة إمكانية الوصول الخاصة بمنظف ذاكرة التخزين المؤقت لـ Codex Manager. قم بتمكينها في إعدادات النظام، ثم ابدأ مرة أخرى.</string>
+    <string name="storage_autoclear_need_elevated">المسح التلقائي يحتاج إلى خدمة إمكانية الوصول الخاصة بمنظف ذاكرة التخزين المؤقت لـ Codex Manager. تم العثور على روت/شيزوكو، يمكن تمكينها تلقائياً.</string>
     <string name="storage_enable_auto">التمكين تلقائياً</string>
     <string name="storage_open_settings">فتح الإعدادات</string>
     <string name="storage_service_enabled_again">تم تمكين الخدمة، اضغط على المسح التلقائي مرة أخرى</string>
@@ -1172,7 +1172,7 @@
     <string name="wifi_save_failed">فشل الحفظ</string>
     <string name="wifi_qr_failed">فشل QR</string>
     <string name="wifi_nothing_to_export">لا يوجد شيء للتصدير</string>
-    <string name="wifi_exported">تم التصدير إلى Download/MP Manager</string>
+    <string name="wifi_exported">تم التصدير إلى Download/Codex Manager</string>
     <string name="wifi_export_failed">فشل التصدير</string>
     <string name="wifi_networks_n">%1$d شبكات</string>
     <string name="wifi_root_needed_passwords">الروت مطلوب لكلمات المرور المحفوظة</string>
@@ -1300,7 +1300,7 @@
     <string name="toggle_hex_keypad">تبديل لوحة مفاتيح Hex</string>
     <string name="height_15_90">الارتفاع %% (15–90)</string>
     <string name="toast_message">رسالة الإشعار (Toast)</string>
-    <string name="def_msg">مرحباً بك من MP Manager</string>
+    <string name="def_msg">مرحباً بك من Codex Manager</string>
     <string name="duration">المدة</string>
     <string name="position">الموضع</string>
     <string name="def">الافتراضي</string>
@@ -1644,7 +1644,7 @@
     <string name="dex_export_jar">Jar (مصادر Java)</string>
     <string name="dex_export_choose_folder">اختر مجلد التصدير</string>
     <string name="dex_export_none">لم يتم تحديد فئات (Classes)</string>
-    <string name="ai_warning">تحذير: الردود التي يتم إنشاؤها بواسطة الذكاء الاصطناعي مقدمة لأغراض إعلامية فقط وقد تكون غير دقيقة أو غير كاملة أو قديمة أو غير آمنة. أنت وحدك المسؤول عن مراجعة أي مخرجات للذكاء الاصطناعي والتحقق منها واستخدامها. إلى أقصى حد يسمح به القانون، لا يتحمل مطور MP Manager أي مسؤولية عن أي خسارة أو ضرر أو نتيجة تنشأ عن استخدام ميزة الذكاء الاصطناعي هذه أو الاعتماد على مخرجاتها. يخضع استخدام واجهة برمجة التطبيقات لشروط خدمة Gemini الخاصة بـ Google، وأنت مسؤول عن أي رسوم يتم تكبدها من خلال مفتاح API الخاص بك.</string>
+    <string name="ai_warning">تحذير: الردود التي يتم إنشاؤها بواسطة الذكاء الاصطناعي مقدمة لأغراض إعلامية فقط وقد تكون غير دقيقة أو غير كاملة أو قديمة أو غير آمنة. أنت وحدك المسؤول عن مراجعة أي مخرجات للذكاء الاصطناعي والتحقق منها واستخدامها. إلى أقصى حد يسمح به القانون، لا يتحمل مطور Codex Manager أي مسؤولية عن أي خسارة أو ضرر أو نتيجة تنشأ عن استخدام ميزة الذكاء الاصطناعي هذه أو الاعتماد على مخرجاتها. يخضع استخدام واجهة برمجة التطبيقات لشروط خدمة Gemini الخاصة بـ Google، وأنت مسؤول عن أي رسوم يتم تكبدها من خلال مفتاح API الخاص بك.</string>
     <string name="agree">أوافق</string>
     <string name="ai_usage_disclaimer">إخلاء مسؤولية استخدام الذكاء الاصطناعي</string>
     <string name="edpref_display">إعدادات العرض</string>

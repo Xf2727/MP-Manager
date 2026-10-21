@@ -1550,7 +1550,7 @@ androidx/
     <string name="rec_capturing_sub">แตะตัวบันทึกเพื่อหยุด</string>
     <string name="locate_failed">ระบุตำแหน่งไฟล์นี้ไม่ได้</string>
     <string name="locate_resolving">กำลังระบุไฟล์…</string>
-    <string name="shared_entry_title">MP Manager</string>
+    <string name="shared_entry_title">Codex Manager</string>
     <string name="shared_entry_subtitle">เลือกว่าจะทำอะไรกับไฟล์นี้</string>
     <string name="shared_entry_file_icon">ไอคอนไฟล์</string>
     <string name="shared_entry_unknown">ไฟล์ที่แชร์</string>
@@ -1626,7 +1626,7 @@ androidx/
 
 วิธีสร้าง: คัดลอกโมดูล samples/plugin-sample ประกาศ hook ที่ใช้ใน manifest และทำตาม contract string ใน PluginContracts จากนั้น build APK โฮสต์ไว้ที่ใดก็ได้ และแชร์ลายนิ้วมือกับผู้ใช้</string>
     <string name="installer">ตัวติดตั้ง: %1$s</string>
-    <string name="ai_warning">คำเตือน: คำตอบที่ AI สร้างให้เพื่อข้อมูลเท่านั้น อาจไม่ถูกต้อง ไม่ครบ ล้าสมัย หรือไม่ปลอดภัย คุณรับผิดชอบตรวจสอบ ยืนยัน และใช้เอาต์พุต AI แต่เพียงผู้เดียว ในขอบเขตสูงสุดที่กฎหมายอนุญาต นักพัฒนา MP Manager ไม่รับผิดชอบความสูญเสีย ความเสียหาย หรือผลใดๆ จากการใช้ฟีเจอร์ AI นี้ การใช้ API อยู่ภายใต้ข้อกำหนดบริการ Gemini ของ Google และคุณรับผิดชอบค่าใช้จ่ายใดๆ ผ่าน API key ของคุณ</string>
+    <string name="ai_warning">คำเตือน: คำตอบที่ AI สร้างให้เพื่อข้อมูลเท่านั้น อาจไม่ถูกต้อง ไม่ครบ ล้าสมัย หรือไม่ปลอดภัย คุณรับผิดชอบตรวจสอบ ยืนยัน และใช้เอาต์พุต AI แต่เพียงผู้เดียว ในขอบเขตสูงสุดที่กฎหมายอนุญาต นักพัฒนา Codex Manager ไม่รับผิดชอบความสูญเสีย ความเสียหาย หรือผลใดๆ จากการใช้ฟีเจอร์ AI นี้ การใช้ API อยู่ภายใต้ข้อกำหนดบริการ Gemini ของ Google และคุณรับผิดชอบค่าใช้จ่ายใดๆ ผ่าน API key ของคุณ</string>
     <string name="agree">ยอมรับ</string>
     <string name="ai_usage_disclaimer">ข้อปฏิเสธการใช้ AI</string>
     <string name="edpref_display">ตั้งค่าการแสดงผล</string>
@@ -1677,12 +1677,12 @@ androidx/
     <string name="mtime_failed">อัปเดตเวลาแก้ไขล่าสุดไม่สำเร็จ</string>
     <string name="shizuku_silent_install">ติดตั้งเงียบด้วย Shizuku</string>
     <string name="installer_source">แหล่งตัวติดตั้ง (การระบุที่มาติดตั้ง)</string>
-    <string name="installer_source_self">ตัวเอง (MP Manager)</string>
+    <string name="installer_source_self">ตัวเอง (Codex Manager)</string>
     <string name="installer_source_play">Google Play Store (ปลอม ต้องใช้ root/Shizuku)</string>
     <string name="installer_source_shell">Shell (ต้องใช้ root/Shizuku สำหรับ HyperOS/MIUI)</string>
     <string name="installer_source_custom">แพ็กเกจกำหนดเอง…</string>
     <string name="installer_custom_pkg">แพ็กเกจตัวติดตั้งกำหนดเอง</string>
-    <string name="installer_spoof_note">การปลอมจะติดเฉพาะติดตั้งเงียบด้วย root/Shizuku หากไม่มีสิทธิ์ระบบจะบันทึกเป็น MP Manager เอง การปลอม Play ช่วยหยุดแอปที่ตรวจตัวติดตั้งไม่ให้ขอติดตั้งใหม่จาก Play; ไม่ได้ปลอมลายเซ็นหรือไลเซนส์ Play</string>
+    <string name="installer_spoof_note">การปลอมจะติดเฉพาะติดตั้งเงียบด้วย root/Shizuku หากไม่มีสิทธิ์ระบบจะบันทึกเป็น Codex Manager เอง การปลอม Play ช่วยหยุดแอปที่ตรวจตัวติดตั้งไม่ให้ขอติดตั้งใหม่จาก Play; ไม่ได้ปลอมลายเซ็นหรือไลเซนส์ Play</string>
     <string name="install_allow_test">อนุญาตแพ็กเกจทดสอบ</string>
     <string name="install_allow_downgrade">อนุญาตดาวน์เกรด</string>
     <string name="install_grant_all">ให้สิทธิ์ทั้งหมดที่ขอตอนติดตั้ง</string>

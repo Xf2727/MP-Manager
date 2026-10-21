@@ -1009,7 +1009,7 @@ final View.OnClickListener originalClickListener;
                                         if (isInZip) {
                                             fileOpener.shareZipEntry(item, fileName);
                                         } else fileOpener.withReadableCopy(file, readable -> {
-                                            Uri uri = FileProvider.getUriForFile(context, "io.github.abdurazaaqmohammed.MPManager.provider", readable);
+                                            Uri uri = FileProvider.getUriForFile(context, "codexmanager.me.provider", readable);
                                             String shareMime = MimeUtil.getMimeTypeForAction(context, readable);
                                             context.startActivity(Intent.createChooser(new Intent(Intent.ACTION_SEND).setType(shareMime != null ? shareMime : "application/octet-stream").putExtra(Intent.EXTRA_STREAM, uri).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION), "Share " + fileName));
                                         });

@@ -3,7 +3,7 @@ package rikka.shizuku;
 import moe.shizuku.server.IRemoteProcess;
 
 /**
- * Bridge giving MP Manager access to Shizuku's remote process creation.
+ * Bridge giving Codex Manager access to Shizuku's remote process creation.
  * Lives in the rikka.shizuku package to reach the package-private ShizukuRemoteProcess
  * constructor and the protected requireService() accessor.
  */

@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 
 public class AppLogs {
     public static File getLogsDir() {
-        File dir = new File(new File(Environment.getExternalStorageDirectory(), "MP Manager"), "logs");
+        File dir = new File(new File(Environment.getExternalStorageDirectory(), "Codex Manager"), "logs");
         dir.mkdirs();
         return dir;
     }
@@ -34,7 +34,7 @@ public class AppLogs {
 
             //File out = new File(getLogsDir(), "crash_" + System.currentTimeMillis() + ".txt");
             FileWriter fw = new FileWriter(out, false);
-            fw.write("MP Manager ");
+            fw.write("Codex Manager ");
             fw.write(getVersionName(context));
             fw.write("\nSDK ");
             fw.write(String.valueOf(Build.VERSION.SDK_INT));

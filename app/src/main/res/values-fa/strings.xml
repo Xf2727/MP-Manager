@@ -1471,7 +1471,7 @@ com/gms/
     <string name="wifi_current_connection">اتصال فعلی</string>
     <string name="wifi_data_usage">مصرف شبکه</string>
     <string name="wifi_export_failed">صادرات انجام نشد</string>
-    <string name="wifi_exported">به Download/MP Manager صادر شد</string>
+    <string name="wifi_exported">به Download/Codex Manager صادر شد</string>
     <string name="wifi_grant_failed">مجوز اعطا نشد</string>
     <string name="wifi_grant_msg">دسترسی ریشه/روت پیدا شد. به این برنامه مجوز WRITE_SECURE_SETTINGS را اعطا کنید تا دفعه بعد DNS بتواند با یک ضربه تغییر کند؟</string>
     <string name="wifi_grant_title">اعطای مجوز WRITE_SECURE_SETTINGS</string>
@@ -1689,12 +1689,12 @@ com/gms/
     <string name="mtime_failed">به‌روزرسانی تاریخ آخرین تغییر انجام نشد</string>
     <string name="shizuku_silent_install">نصب بی‌صدا با Shizuku</string>
     <string name="installer_source">منبع نصب‌کننده (انتساب نصب)</string>
-    <string name="installer_source_self">خود برنامه (MP Manager)</string>
+    <string name="installer_source_self">خود برنامه (Codex Manager)</string>
     <string name="installer_source_play">فروشگاه Google Play (جعل، نیازمند root/Shizuku)</string>
     <string name="installer_source_shell">شل (نیازمند root/Shizuku، برای HyperOS/MIUI)</string>
     <string name="installer_source_custom">بسته سفارشی…</string>
     <string name="installer_custom_pkg">بسته نصب‌کننده سفارشی</string>
-    <string name="installer_spoof_note">جعل فقط با نصب بی‌صدای root/Shizuku باقی می‌ماند. بدون دسترسی ویژه، سیستم خود MP Manager را ثبت می‌کند. جعل Play از درخواست نصب مجدد از Play توسط برنامه‌هایی که نصب‌کننده را بررسی می‌کنند جلوگیری می‌کند؛ امضا یا مجوز Play را جعل نمی‌کند.</string>
+    <string name="installer_spoof_note">جعل فقط با نصب بی‌صدای root/Shizuku باقی می‌ماند. بدون دسترسی ویژه، سیستم خود Codex Manager را ثبت می‌کند. جعل Play از درخواست نصب مجدد از Play توسط برنامه‌هایی که نصب‌کننده را بررسی می‌کنند جلوگیری می‌کند؛ امضا یا مجوز Play را جعل نمی‌کند.</string>
     <string name="install_allow_test">اجازه بسته‌های آزمایشی</string>
     <string name="install_allow_downgrade">اجازه کاهش نسخه</string>
     <string name="install_grant_all">اعطای همه مجوزهای درخواستی هنگام نصب</string>

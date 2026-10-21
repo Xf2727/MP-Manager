@@ -139,14 +139,14 @@ public class APKExtractorActivity extends BaseActivity {
     private boolean loadingApps;
 
     public static File getAppFolder() {
-        final File appFolder = new File(new File(Environment.getExternalStorageDirectory(), "MP Manager"), "Extracted APKs");
+        final File appFolder = new File(new File(Environment.getExternalStorageDirectory(), "Codex Manager"), "Extracted APKs");
         return appFolder.exists() || appFolder.mkdirs() ? appFolder : new File(Environment.getExternalStorageDirectory(), "Download");
     }
 
     public static File getAppFolder(Context context) {
         try {
             String base = UiPrefs.appPathDir(context,
-                    new File(Environment.getExternalStorageDirectory(), "MP Manager").getAbsolutePath());
+                    new File(Environment.getExternalStorageDirectory(), "Codex Manager").getAbsolutePath());
             File dir = new File(base, "Extracted APKs");
             if (dir.exists() || dir.mkdirs()) return dir;
         } catch (Exception ignored) {
@@ -1540,7 +1540,7 @@ public class APKExtractorActivity extends BaseActivity {
         ArrayList<File> mergedFiles = new ArrayList<>();
 
         new Thread(() -> {
-            String authority = "io.github.abdurazaaqmohammed.MPManager.provider";
+            String authority = "codexmanager.me.provider";
             for(int i : itemsToProcess) try {
                 AppInfo ai = getCurrentAdapter().filteredAppInfoList.get(i);
                 boolean split = ai.isSplit;
@@ -1640,7 +1640,7 @@ public class APKExtractorActivity extends BaseActivity {
                         if (files != null) {
                             for (File f : files) {
                                 if (f.isFile() && f.getName().endsWith(".apk")) {
-                                    fileUris.add(FileProvider.getUriForFile(this, "io.github.abdurazaaqmohammed.MPManager.provider", f));
+                                    fileUris.add(FileProvider.getUriForFile(this, "codexmanager.me.provider", f));
                                 }
                             }
                         }
@@ -1690,7 +1690,7 @@ public class APKExtractorActivity extends BaseActivity {
                     .setType("application/vnd.android.package-archive")
                     .putParcelableArrayListExtra(Intent.EXTRA_STREAM, fileUris);
         } else {
-            Uri u = FileProvider.getUriForFile(this, "io.github.abdurazaaqmohammed.MPManager.provider", single);
+            Uri u = FileProvider.getUriForFile(this, "codexmanager.me.provider", single);
             intent = new Intent(Intent.ACTION_SEND)
                     .setType("application/vnd.android.package-archive")
                     .putExtra(Intent.EXTRA_STREAM, u);

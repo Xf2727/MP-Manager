@@ -72,9 +72,9 @@ public class TranslationExportDialog {
         Button browseButton = view.findViewById(R.id.translation_browse_button);
         outputPathTarget = outputPathInput;
 
-        // Set default output path to Downloads/MP Manager
+        // Set default output path to Downloads/Codex Manager
         File downloadsDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOWNLOADS), "MP Manager");
+                Environment.DIRECTORY_DOWNLOADS), "Codex Manager");
         if (!downloadsDir.exists()) downloadsDir.mkdirs();
         outputPathInput.setText(downloadsDir.getAbsolutePath());
 

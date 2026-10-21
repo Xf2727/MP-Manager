@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">MP Manager</string>
+    <string name="app_name" translatable="false">Codex Manager</string>
     <string name="success_saved">Файл успешно сохранён: %s</string>
     <string name="enable_logs">Сохранять журналы</string>
     <string name="sign_apk_after_merge">Подписывать APK после объединения</string>
@@ -354,7 +354,7 @@
     <string name="no_apk_files_found">APK-файлы в архиве не найдены</string>
     <string name="manage_bottom_bar">Настроить нижнюю панель</string>
     <string name="delete_button">Удалить кнопку</string>
-    <string name="termux_perm"><![CDATA[Примечание: необходимо разрешить MP Manager отправлять команды в Termux\n(Разрешения > Дополнительные разрешения > Выполнение команд в среде Termux)]]></string>
+    <string name="termux_perm"><![CDATA[Примечание: необходимо разрешить Codex Manager отправлять команды в Termux\n(Разрешения > Дополнительные разрешения > Выполнение команд в среде Termux)]]></string>
     <string name="editor_settings">Настройки редактора</string>
     <string name="icon_changed">Значок изменён</string>
     <string name="could_not_decode_am">Не удалось декодировать AndroidManifest.xml</string>
@@ -836,8 +836,8 @@
     <string name="storage_roundtrip_done">Проверка завершена</string>
     <string name="storage_nothing_selected">Ничего не выбрано, сначала нажмите «Загрузить»</string>
     <string name="storage_enable_autoclear">Включить службу автоочистки</string>
-    <string name="storage_autoclear_need">Для автоочистки нужна служба специальных возможностей «MP Manager Cache Cleaner». Включите её в системных настройках, затем начните снова.</string>
-    <string name="storage_autoclear_need_elevated">Для автоочистки нужна служба специальных возможностей «MP Manager Cache Cleaner». Найден Root/Shizuku, её можно включить автоматически.</string>
+    <string name="storage_autoclear_need">Для автоочистки нужна служба специальных возможностей «Codex Manager Cache Cleaner». Включите её в системных настройках, затем начните снова.</string>
+    <string name="storage_autoclear_need_elevated">Для автоочистки нужна служба специальных возможностей «Codex Manager Cache Cleaner». Найден Root/Shizuku, её можно включить автоматически.</string>
     <string name="storage_enable_auto">Включить автоматически</string>
     <string name="storage_open_settings">Открыть настройки</string>
     <string name="storage_service_enabled_again">Служба включена, снова нажмите автоочистку</string>
@@ -953,7 +953,7 @@
     <string name="wifi_save_failed">Не удалось сохранить</string>
     <string name="wifi_qr_failed">Не удалось создать QR</string>
     <string name="wifi_nothing_to_export">Нечего экспортировать</string>
-    <string name="wifi_exported">Экспортировано в Download/MP Manager</string>
+    <string name="wifi_exported">Экспортировано в Download/Codex Manager</string>
     <string name="wifi_export_failed">Не удалось экспортировать</string>
     <string name="wifi_networks_n">Сетей: %1$d</string>
     <string name="wifi_root_needed_passwords">Для сохранённых паролей нужен root</string>
@@ -1081,7 +1081,7 @@
     <string name="toggle_hex_keypad">Переключить hex-клавиатуру</string>
     <string name="height_15_90">Высота %% (15–90)</string>
     <string name="toast_message">Сообщение Toast</string>
-    <string name="def_msg">Привет от MP Manager</string>
+    <string name="def_msg">Привет от Codex Manager</string>
     <string name="duration">Длительность</string>
     <string name="position">Позиция</string>
     <string name="def">По умолчанию</string>
@@ -1571,7 +1571,7 @@
     <string name="folder_anim_slide_up">Слайд вверх</string>
     <string name="folder_anim_fade">Затухание</string>
     <string name="folder_anim_slide_fade">Слайд + затухание</string>
-    <string name="shared_entry_title">MP Manager</string>
+    <string name="shared_entry_title">Codex Manager</string>
     <string name="shared_entry_subtitle">Выберите, что сделать с этим файлом</string>
     <string name="shared_entry_file_icon">Значок файла</string>
     <string name="shared_entry_unknown">Общий файл</string>
@@ -1597,7 +1597,7 @@
     <string name="x_strings_found">Найдено строк: %1$d</string>
     <string name="x_more_strings">…и ещё %1$d</string>
     <string name="installer">Установщик: %1$s</string>
-    <string name="ai_warning">Внимание: ответы, созданные ИИ, предоставляются исключительно в информационных целях и могут быть неточными, неполными, устаревшими или небезопасными. Вы несёте полную ответственность за проверку и использование любых результатов ИИ. В максимальной степени, разрешённой законом, разработчик MP Manager не несёт ответственности за убытки, ущерб или последствия использования этой функции ИИ. Использование API регулируется условиями сервиса Google Gemini, и вы отвечаете за любые расходы по вашему API-ключу.</string>
+    <string name="ai_warning">Внимание: ответы, созданные ИИ, предоставляются исключительно в информационных целях и могут быть неточными, неполными, устаревшими или небезопасными. Вы несёте полную ответственность за проверку и использование любых результатов ИИ. В максимальной степени, разрешённой законом, разработчик Codex Manager не несёт ответственности за убытки, ущерб или последствия использования этой функции ИИ. Использование API регулируется условиями сервиса Google Gemini, и вы отвечаете за любые расходы по вашему API-ключу.</string>
     <string name="agree">Согласен</string>
     <string name="ai_usage_disclaimer">Предупреждение об использовании ИИ</string>
     <string name="edpref_display">Настройки отображения</string>
@@ -1648,12 +1648,12 @@
     <string name="mtime_failed">Не удалось обновить дату изменения</string>
     <string name="shizuku_silent_install">Тихая установка через Shizuku</string>
     <string name="installer_source">Источник установщика (атрибуция установки)</string>
-    <string name="installer_source_self">Само приложение (MP Manager)</string>
+    <string name="installer_source_self">Само приложение (Codex Manager)</string>
     <string name="installer_source_play">Google Play Store (подмена, нужен root/Shizuku)</string>
     <string name="installer_source_shell">Shell (нужен root/Shizuku, для HyperOS/MIUI)</string>
     <string name="installer_source_custom">Свой пакет…</string>
     <string name="installer_custom_pkg">Свой пакет установщика</string>
-    <string name="installer_spoof_note">Подмена работает только с тихой установкой через root/Shizuku. Без привилегий система запишет сам MP Manager. Подмена Play не даёт приложениям, проверяющим установщик, просить переустановку из Play; подписи и лицензии Play не подделываются.</string>
+    <string name="installer_spoof_note">Подмена работает только с тихой установкой через root/Shizuku. Без привилегий система запишет сам Codex Manager. Подмена Play не даёт приложениям, проверяющим установщик, просить переустановку из Play; подписи и лицензии Play не подделываются.</string>
     <string name="install_allow_test">Разрешить тестовые пакеты</string>
     <string name="install_allow_downgrade">Разрешить понижение версии</string>
     <string name="install_grant_all">Выдавать все запрашиваемые разрешения при установке</string>

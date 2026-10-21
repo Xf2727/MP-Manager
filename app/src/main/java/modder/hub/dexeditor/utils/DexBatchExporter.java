@@ -124,7 +124,7 @@ public final class DexBatchExporter {
                 try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(out))) {
                     ZipEntry man = new ZipEntry("META-INF/MANIFEST.MF");
                     zos.putNextEntry(man);
-                    zos.write("Manifest-Version: 1.0\nCreated-By: MP Manager\n".getBytes(StandardCharsets.UTF_8));
+                    zos.write("Manifest-Version: 1.0\nCreated-By: Codex Manager\n".getBytes(StandardCharsets.UTF_8));
                     zos.closeEntry();
                     for (JavaClass cls : decompiler.getClasses()) {
                         String name = cls.getFullName();

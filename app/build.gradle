@@ -8,7 +8,7 @@ android {
         baseline = file("lint.xml")
     }
     defaultConfig {
-        applicationId "io.github.abdurazaaqmohammed.MPManager"
+        applicationId "codexmanager.me"
         minSdk 23
         targetSdk 37
         multiDexEnabled true
