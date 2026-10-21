@@ -287,63 +287,21 @@ public class SidebarAdapter extends ArrayAdapter<SidebarAdapter.SidebarEntry> {
     }
 
     private void addTools() {
-        String[] defaults = {"extract", "ftp_server", "ftp_client", "color_picker", "layout", "wifi", "tools", "settings"};
+        String[] defaults = {"extract", "ftp_server", "layout", "wifi", "settings"};
         List<String> order = new ArrayList<>();
         for (String id : toolOrder) if (!order.contains(id)) order.add(id);
         for (String id : defaults) if (!order.contains(id)) order.add(id);
         for (String id : order) {
-            if (id.equals("ftp_client") || id.equals("color_picker") || id.equals("tools") || id.startsWith("ext.")) continue;
             switch (id) {
                 case "extract": addTool(id, R.string.sidebar_extract, R.drawable.apk_document_24px); break;
                 case "ftp_server": addTool(id, R.string.codex_ftp_transfer, R.drawable.cloud_upload_24px); break;
-                case "ftp_client": addTool(id, R.string.ftp_client, R.drawable.cloud_download_24px); break;
-                case "color_picker": addTool(id, R.string.color_picker, R.drawable.colorize_24px); break;
                 case "layout": addTool(id, R.string.sidebar_layout_inspector, R.drawable.ic_inspect); break;
                 case "wifi": addTool(id, R.string.sidebar_wifi, R.drawable.wifi_24px); break;
-                case "tools": addTool(id, R.string.sidebar_tools, R.drawable.tools_24px); break;
                 case "settings": addTool(id, R.string.settings, R.drawable.baseline_settings_24); break;
-                default: {
-                    // Third-party sidebar actions (ids unknown to the switch).
-                    SidebarAction inProc = ExtensionRegistry.findSidebar(id);
-                    if (inProc != null) {
-                        addToolEntry(id, inProc);
-                        break;
-                    }
-                    ExternalActions.Entry ext =
-                            ExternalActions.findById(java.util.Collections.<ExternalActions.Entry>emptyList(), id);
-                    if (ext != null) addExternalTool(ext);
-                    break;
-                }
+                default: break; // Ignore removed tools and previously saved plugin entries.
             }
-        }
-        // External (out-of-process) actions discovered after the saved order
-        // was written are appended once, then round-trip like built-ins.
-        for (ExternalActions.Entry e : java.util.Collections.<ExternalActions.Entry>emptyList()) {
-            if (e == null || e.id == null) continue;
-            boolean present = false;
-            for (SidebarEntry se : entries) {
-                if (se.type == EntryType.TOOL && e.id.equals(se.id())) {
-                    present = true;
-                    break;
-                }
-            }
-            if (!present) addExternalTool(e);
-        }
-        // Actions installed after the saved order was written are appended once;
-        // from then on they round-trip through toolOrder like built-ins.
-        for (SidebarAction ext : java.util.Collections.<SidebarAction>emptyList()) {
-            if (ext == null || ext.id() == null) continue;
-            boolean present = false;
-            for (SidebarEntry e : entries) {
-                if (e.type == EntryType.TOOL && ext.id().equals(e.id())) {
-                    present = true;
-                    break;
-                }
-            }
-            if (!present) addToolEntry(ext.id(), ext);
         }
     }
-
     private void addTool(String id, int text, int icon) {
         SidebarEntry entry = new SidebarEntry(EntryType.TOOL, "tools", id, context.getString(text), icon, null, null);
         if (organizeMode || !hiddenItems.contains(entryKey(entry))) entries.add(entry);
