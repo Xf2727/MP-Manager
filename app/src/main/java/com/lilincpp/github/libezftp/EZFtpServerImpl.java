@@ -8,10 +8,15 @@ import org.apache.ftpserver.FtpServer;
 import org.apache.ftpserver.FtpServerFactory;
 import org.apache.ftpserver.ftplet.Authority;
 import org.apache.ftpserver.ftplet.FtpException;
+import org.apache.ftpserver.ftplet.Authentication;
+import org.apache.ftpserver.ftplet.AuthenticationFailedException;
+import org.apache.ftpserver.ftplet.User;
 import org.apache.ftpserver.listener.ListenerFactory;
 import org.apache.ftpserver.ssl.SslConfigurationFactory;
 import org.apache.ftpserver.usermanager.impl.BaseUser;
 import org.apache.ftpserver.usermanager.impl.AbstractUserManager;
+import org.apache.ftpserver.usermanager.AnonymousAuthentication;
+import org.apache.ftpserver.usermanager.UsernamePasswordAuthentication;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -62,6 +67,22 @@ final class EZFtpServerImpl implements IEZFtpServer {
             try {
                 if ("anonymous".equalsIgnoreCase(user.getName())) {
                     serverFactory.setUserManager(new AbstractUserManager("anonymous", null) {
+                        @Override
+                        public User authenticate(Authentication authentication) throws AuthenticationFailedException {
+                            if (authentication instanceof AnonymousAuthentication) {
+                                return baseUser;
+                            }
+                            if (authentication instanceof UsernamePasswordAuthentication) {
+                                UsernamePasswordAuthentication credentials =
+                                        (UsernamePasswordAuthentication) authentication;
+                                if ("anonymous".equalsIgnoreCase(credentials.getUsername())
+                                        && (credentials.getPassword() == null || credentials.getPassword().isEmpty())) {
+                                    return baseUser;
+                                }
+                            }
+                            throw new AuthenticationFailedException("Invalid FTP credentials");
+                        }
+
                         @Override
                         public org.apache.ftpserver.ftplet.User getUserByName(String name) {
                             return "anonymous".equalsIgnoreCase(name) ? baseUser : null;
