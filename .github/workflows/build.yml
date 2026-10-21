@@ -45,8 +45,24 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build debug APK
-        run: bash ./gradlew :app:assembleDebug --stacktrace
+      - name: Prepare release signing key
+        env:
+          CODEX_KEYSTORE_BASE64: ${{ secrets.CODEX_KEYSTORE_BASE64 }}
+        run: |
+          test -n "$CODEX_KEYSTORE_BASE64" || { echo "::error::Configure CODEX_KEYSTORE_BASE64 in repository Actions secrets"; exit 1; }
+          printf '%s' "$CODEX_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/codexmanager-release.p12"
+          echo "CODEX_SIGNING_STORE=$RUNNER_TEMP/codexmanager-release.p12" >> "$GITHUB_ENV"
+
+      - name: Build signed release APK
+        env:
+          CODEX_STORE_PASSWORD: ${{ secrets.CODEX_STORE_PASSWORD }}
+          CODEX_KEY_ALIAS: ${{ secrets.CODEX_KEY_ALIAS }}
+          CODEX_KEY_PASSWORD: ${{ secrets.CODEX_KEY_PASSWORD }}
+        run: |
+          test -n "$CODEX_STORE_PASSWORD" || { echo "::error::Configure CODEX_STORE_PASSWORD in repository Actions secrets"; exit 1; }
+          test -n "$CODEX_KEY_ALIAS" || { echo "::error::Configure CODEX_KEY_ALIAS in repository Actions secrets"; exit 1; }
+          test -n "$CODEX_KEY_PASSWORD" || { echo "::error::Configure CODEX_KEY_PASSWORD in repository Actions secrets"; exit 1; }
+          bash ./gradlew :app:assembleRelease --stacktrace
 
       - name: Name APK
         run: |
@@ -58,7 +74,7 @@ jobs:
 
           text = Path('app/build.gradle').read_text(encoding='utf-8')
           version = re.search(r'versionName\s+"([^"/\\]+)"', text).group(1)
-          apk = Path('app/build/outputs/apk/debug/app-debug.apk')
+          apk = Path('app/build/outputs/apk/release/app-release.apk')
           output = Path('dist')
           output.mkdir(exist_ok=True)
           name = f'Codex Manager-{version}.apk'

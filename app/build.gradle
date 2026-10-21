@@ -16,8 +16,20 @@ android {
         versionName "1.1.1"
     }
 
+    signingConfigs {
+        codexRelease {
+            storeFile file(System.getenv("CODEX_SIGNING_STORE")
+                    ?: "${buildDir}/codexmanager-release.p12")
+            storeType "PKCS12"
+            storePassword System.getenv("CODEX_STORE_PASSWORD") ?: ""
+            keyAlias System.getenv("CODEX_KEY_ALIAS") ?: "codexmanager"
+            keyPassword System.getenv("CODEX_KEY_PASSWORD") ?: ""
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.codexRelease
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
