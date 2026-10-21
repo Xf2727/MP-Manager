@@ -207,7 +207,7 @@ if (confirmed && event.getActionMasked() == MotionEvent.ACTION_UP) {
                             if (live != null && pos != RecyclerView.NO_POSITION)
                                 live.handleSwipe(pos);
                         } else {
-                        v.animate().translationX(0).setDuration(180).setInterpolator(new DecelerateInterpolator(1.5f)).start();
+                        v.animate().translationX(0).setDuration(240L).setInterpolator(new DecelerateInterpolator(1.2f)).start();
                     }
                     isSwiping = false;
                     return true;

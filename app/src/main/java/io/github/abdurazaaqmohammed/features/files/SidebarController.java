@@ -493,9 +493,6 @@ public class SidebarController {
             case "color_picker":
                 activity.openColorPickerTool();
                 break;
-            case "layout":
-                activity.openLayoutInspectorTool();
-                break;
             default: {
                 if (id != null && id.startsWith(SidebarAdapter.PACK_TOOL_PREFIX)) {
                     openPackTool(id.substring(SidebarAdapter.PACK_TOOL_PREFIX.length()));

@@ -11,6 +11,7 @@ import org.apache.ftpserver.ftplet.FtpException;
 import org.apache.ftpserver.listener.ListenerFactory;
 import org.apache.ftpserver.ssl.SslConfigurationFactory;
 import org.apache.ftpserver.usermanager.impl.BaseUser;
+import org.apache.ftpserver.usermanager.impl.AbstractUserManager;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -59,7 +60,34 @@ final class EZFtpServerImpl implements IEZFtpServer {
             authorities.add(user.getPermission().getAuthority());
             baseUser.setAuthorities(authorities);
             try {
-                serverFactory.getUserManager().save(baseUser);
+                if ("anonymous".equalsIgnoreCase(user.getName())) {
+                    serverFactory.setUserManager(new AbstractUserManager("anonymous", null) {
+                        @Override
+                        public org.apache.ftpserver.ftplet.User getUserByName(String name) {
+                            return "anonymous".equalsIgnoreCase(name) ? baseUser : null;
+                        }
+
+                        @Override
+                        public String[] getAllUserNames() {
+                            return new String[]{"anonymous"};
+                        }
+
+                        @Override
+                        public void delete(String name) {
+                        }
+
+                        @Override
+                        public void save(org.apache.ftpserver.ftplet.User user) {
+                        }
+
+                        @Override
+                        public boolean doesExist(String name) {
+                            return "anonymous".equalsIgnoreCase(name);
+                        }
+                    });
+                } else {
+                    serverFactory.getUserManager().save(baseUser);
+                }
             } catch (FtpException e) {
                 e.printStackTrace();
             }

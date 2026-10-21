@@ -307,10 +307,14 @@
             android:paddingBottom="16dp">
 
             <ImageView
+                android:id="@+id/sidebarLogo"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:importantForAccessibility="no"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_launcher"
+                android:background="@drawable/bg_codex_logo"
+                android:clipToOutline="true"
+                android:outlineProvider="background" />
 
             <TextView
                 android:layout_width="0dp"

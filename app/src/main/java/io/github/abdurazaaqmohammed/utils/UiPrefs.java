@@ -187,9 +187,9 @@ public final class UiPrefs {
         try {
             pane.animate().cancel();
             float density = pane.getResources().getDisplayMetrics().density;
-            long dur = 170;
-            DecelerateInterpolator interp =
-                    new DecelerateInterpolator();
+            long dur = 190;
+            android.view.animation.Interpolator interp =
+                    new android.view.animation.PathInterpolator(0.22f, 1f, 0.36f, 1f);
             if (FOLDER_ANIM_FADE.equals(mode)) {
                 pane.setAlpha(0.35f);
                 pane.setTranslationX(0f);

@@ -89,7 +89,7 @@ public class FtpController {
         EditText userInput = view.findViewById(R.id.userInput);
         EditText passInput = view.findViewById(R.id.passInput);
         userInput.setText(""); passInput.setText("");
-        userInput.setHint("用户名（可选，留空为匿名）"); passInput.setHint("密码（可选）");
+        userInput.setHint("用户名"); passInput.setHint("密码");
         MaterialAutoCompleteTextView securityInput = view.findViewById(R.id.securityInput);
         String[] securityOptions = activity.rss.getStringArray(R.array.ftp_security_options);
         securityInput.setSimpleItems(securityOptions);
@@ -138,14 +138,13 @@ public class FtpController {
                     } else {
                         int port = Integer.parseInt(portInput.getText().toString());
                         String user = userInput.getText().toString().trim();
-                        if (user.isEmpty()) user = "anonymous";
                         String pass = passInput.getText().toString();
                         int securityType = getSecurityTypeIndex(securityInput.getText().toString());
 
                         try {
                             Builder builder = new EZFtpServer.Builder()
                                     .setListenPort(port)
-                                    .addUser(new EZFtpUser(user, pass, Environment.getExternalStorageDirectory().getPath(), EZFtpUserPermission.WRITE));
+                                    .addUser(new EZFtpUser(user.isEmpty() ? "anonymous" : user, pass, Environment.getExternalStorageDirectory().getPath(), EZFtpUserPermission.WRITE));
                             if (securityType > 0) {
                                 boolean implicit = securityType == 2;
                                 File keystoreFile = FtpsCertificateUtil.ensureKeystore(new File(activity.getCacheDir(), "ftps-keystore.jks"));
@@ -197,7 +196,7 @@ public class FtpController {
         EditText userInput = view.findViewById(R.id.userInput);
         EditText passInput = view.findViewById(R.id.passInput);
         userInput.setText(""); passInput.setText("");
-        userInput.setHint("用户名（可选，留空为匿名）"); passInput.setHint("密码（可选）");
+        userInput.setHint("用户名"); passInput.setHint("密码");
         MaterialAutoCompleteTextView securityInput = view.findViewById(R.id.securityInput);
         String[] securityOptions = activity.rss.getStringArray(R.array.ftp_security_options);
         securityInput.setSimpleItems(securityOptions);

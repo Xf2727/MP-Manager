@@ -287,7 +287,7 @@ public class SidebarAdapter extends ArrayAdapter<SidebarAdapter.SidebarEntry> {
     }
 
     private void addTools() {
-        String[] defaults = {"extract", "ftp_server", "layout", "wifi", "settings"};
+        String[] defaults = {"extract", "ftp_server", "wifi", "settings"};
         List<String> order = new ArrayList<>();
         for (String id : toolOrder) if (!order.contains(id)) order.add(id);
         for (String id : defaults) if (!order.contains(id)) order.add(id);
@@ -295,7 +295,6 @@ public class SidebarAdapter extends ArrayAdapter<SidebarAdapter.SidebarEntry> {
             switch (id) {
                 case "extract": addTool(id, R.string.sidebar_extract, R.drawable.apk_document_24px); break;
                 case "ftp_server": addTool(id, R.string.codex_ftp_transfer, R.drawable.cloud_upload_24px); break;
-                case "layout": addTool(id, R.string.sidebar_layout_inspector, R.drawable.ic_inspect); break;
                 case "wifi": addTool(id, R.string.sidebar_wifi, R.drawable.wifi_24px); break;
                 case "settings": addTool(id, R.string.settings, R.drawable.baseline_settings_24); break;
                 default: break; // Ignore removed tools and previously saved plugin entries.
@@ -441,13 +440,13 @@ public class SidebarAdapter extends ArrayAdapter<SidebarAdapter.SidebarEntry> {
             if (entry.section.equals(animateToggleSection)) {
                 animateToggleSection = null;
                 toggle.setAlpha(0.45f);
-                toggle.setScaleX(0.88f);
-                toggle.setScaleY(0.88f);
-                toggle.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(180L).start();
+                toggle.setRotation(groupCollapsed ? -105f : 105f);
+                toggle.animate().alpha(1f).rotation(0f).setDuration(220L)
+                        .setInterpolator(new android.view.animation.PathInterpolator(0.22f, 1f, 0.36f, 1f))
+                        .start();
             } else {
                 toggle.setAlpha(1f);
-                toggle.setScaleX(1f);
-                toggle.setScaleY(1f);
+                toggle.setRotation(0f);
             }
             return view;
         }

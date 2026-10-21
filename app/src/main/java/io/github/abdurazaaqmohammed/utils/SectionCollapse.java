@@ -124,7 +124,9 @@ public final class SectionCollapse {
         }
         float target = collapsed ? -90f : 0f;
         if (animate) {
-            chevron.animate().rotation(target).setDuration(150).start();
+            chevron.animate().rotation(target).setDuration(220L)
+                    .setInterpolator(new android.view.animation.PathInterpolator(0.22f, 1f, 0.36f, 1f))
+                    .start();
         } else {
             chevron.setRotation(target);
         }
