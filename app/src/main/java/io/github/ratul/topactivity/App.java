@@ -75,7 +75,7 @@ public class App extends MultiDexApplication {
             try {
                 // Tools (except a few built-ins like Storage Manager) ship as
                 // downloadable packs now; load whatever the user installed.
-                PackManager.loadInstalledPacks(this);
+                // Tool packs disabled in Codex Manager.
             } catch (Exception ignored) {
             }
         }, "packs-load").start();

@@ -88,6 +88,8 @@ public class FtpController {
         EditText portInput = view.findViewById(R.id.portInput);
         EditText userInput = view.findViewById(R.id.userInput);
         EditText passInput = view.findViewById(R.id.passInput);
+        userInput.setText(""); passInput.setText("");
+        userInput.setHint("用户名（可选，留空为匿名）"); passInput.setHint("密码（可选）");
         MaterialAutoCompleteTextView securityInput = view.findViewById(R.id.securityInput);
         String[] securityOptions = activity.rss.getStringArray(R.array.ftp_security_options);
         securityInput.setSimpleItems(securityOptions);
@@ -135,7 +137,8 @@ public class FtpController {
                         Extensions.showMessage(activity, activity.rss.getString(R.string.ftp_server_stopped));
                     } else {
                         int port = Integer.parseInt(portInput.getText().toString());
-                        String user = userInput.getText().toString();
+                        String user = userInput.getText().toString().trim();
+                        if (user.isEmpty()) user = "anonymous";
                         String pass = passInput.getText().toString();
                         int securityType = getSecurityTypeIndex(securityInput.getText().toString());
 
@@ -193,6 +196,8 @@ public class FtpController {
         EditText portInput = view.findViewById(R.id.portInput);
         EditText userInput = view.findViewById(R.id.userInput);
         EditText passInput = view.findViewById(R.id.passInput);
+        userInput.setText(""); passInput.setText("");
+        userInput.setHint("用户名（可选，留空为匿名）"); passInput.setHint("密码（可选）");
         MaterialAutoCompleteTextView securityInput = view.findViewById(R.id.securityInput);
         String[] securityOptions = activity.rss.getStringArray(R.array.ftp_security_options);
         securityInput.setSimpleItems(securityOptions);
@@ -212,7 +217,8 @@ public class FtpController {
 
                     String ip = ipInput.getText().toString().trim();
                     int port = Integer.parseInt(portInput.getText().toString());
-                    String user = userInput.getText().toString();
+                    String user = userInput.getText().toString().trim();
+                        if (user.isEmpty()) user = "anonymous";
                     String pass = passInput.getText().toString();
                     int securityType = getSecurityTypeIndex(securityInput.getText().toString());
 

@@ -979,7 +979,7 @@ public class MainActivity extends BaseActivity implements PaneNavigationControll
                 openSidebarDrawer();
         };
 
-        findViewById(R.id.sidebarTitle).setOnClickListener(v -> startActivity(new Intent(this, io.github.abdurazaaqmohammed.ui.activities.InteractionActivity.class)));
+        findViewById(R.id.sidebarTitle).setOnClickListener(v -> { android.view.View icon = ((android.view.ViewGroup) v).getChildAt(0); icon.animate().cancel(); icon.setRotation(0f); icon.animate().rotation(360f).setDuration(650).setInterpolator(new android.view.animation.DecelerateInterpolator()).start(); });
         setupSidebar();
         bottomBarGestureDetector = new GestureDetectorCompat(this,
                 new GestureDetector.SimpleOnGestureListener() {
@@ -2891,7 +2891,7 @@ public class MainActivity extends BaseActivity implements PaneNavigationControll
     public static ImagePickCallback overlayImageCallback;
 
     public void showFtpServerDialog() {
-        ftp.showFtpServerDialog();
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(this).setTitle("FTP 传输").setItems(new String[]{"连接设备（上传 / 下载）", "共享本机（上传 / 下载）"}, (dialog, which) -> { if (which == 0) ftp.showFtpClientDialog(); else ftp.showFtpServerDialog(); }).show();
     }
 
     public void showFtpClientDialog() {

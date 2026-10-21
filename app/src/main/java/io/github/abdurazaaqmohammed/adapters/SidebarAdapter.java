@@ -202,7 +202,7 @@ public class SidebarAdapter extends ArrayAdapter<SidebarAdapter.SidebarEntry> {
         for (String section : sectionOrder) {
             if ("bookmarks".equals(section) && !showBookmarks) continue;
             if (section.startsWith(BOOKMARK_GROUP_PREFIX) && !showGroups) continue;
-            if ("plugins".equals(section) && !showPlugins) continue;
+            if ("plugins".equals(section)) continue;
             entries.add(new SidebarEntry(EntryType.HEADER, section, section,
                     sectionTitle(section), 0, null, null));
             if (Boolean.TRUE.equals(collapsed.get(section))) continue;
@@ -270,6 +270,7 @@ public class SidebarAdapter extends ArrayAdapter<SidebarAdapter.SidebarEntry> {
         for (String id : toolOrder) if (byId.containsKey(id) && !order.contains(id)) order.add(id);
         for (String id : byId.keySet()) if (!order.contains(id)) order.add(id);
         for (String id : order) {
+            if (id.equals("ftp_client") || id.equals("color_picker") || id.equals("tools") || id.startsWith("ext.")) continue;
             ToolPlugin tool = byId.get(id);
             String label = tool.title(context);
             if (label == null || label.isEmpty()) label = tool.id();
@@ -291,9 +292,10 @@ public class SidebarAdapter extends ArrayAdapter<SidebarAdapter.SidebarEntry> {
         for (String id : toolOrder) if (!order.contains(id)) order.add(id);
         for (String id : defaults) if (!order.contains(id)) order.add(id);
         for (String id : order) {
+            if (id.equals("ftp_client") || id.equals("color_picker") || id.equals("tools") || id.startsWith("ext.")) continue;
             switch (id) {
                 case "extract": addTool(id, R.string.sidebar_extract, R.drawable.apk_document_24px); break;
-                case "ftp_server": addTool(id, R.string.ftp_server, R.drawable.cloud_upload_24px); break;
+                case "ftp_server": addTool(id, R.string.codex_ftp_transfer, R.drawable.cloud_upload_24px); break;
                 case "ftp_client": addTool(id, R.string.ftp_client, R.drawable.cloud_download_24px); break;
                 case "color_picker": addTool(id, R.string.color_picker, R.drawable.colorize_24px); break;
                 case "layout": addTool(id, R.string.sidebar_layout_inspector, R.drawable.ic_inspect); break;
@@ -308,7 +310,7 @@ public class SidebarAdapter extends ArrayAdapter<SidebarAdapter.SidebarEntry> {
                         break;
                     }
                     ExternalActions.Entry ext =
-                            ExternalActions.findById(ExternalActions.sidebarEntries(context), id);
+                            ExternalActions.findById(java.util.Collections.<ExternalActions.Entry>emptyList(), id);
                     if (ext != null) addExternalTool(ext);
                     break;
                 }
@@ -316,7 +318,7 @@ public class SidebarAdapter extends ArrayAdapter<SidebarAdapter.SidebarEntry> {
         }
         // External (out-of-process) actions discovered after the saved order
         // was written are appended once, then round-trip like built-ins.
-        for (ExternalActions.Entry e : ExternalActions.sidebarEntries(context)) {
+        for (ExternalActions.Entry e : java.util.Collections.<ExternalActions.Entry>emptyList()) {
             if (e == null || e.id == null) continue;
             boolean present = false;
             for (SidebarEntry se : entries) {
@@ -329,7 +331,7 @@ public class SidebarAdapter extends ArrayAdapter<SidebarAdapter.SidebarEntry> {
         }
         // Actions installed after the saved order was written are appended once;
         // from then on they round-trip through toolOrder like built-ins.
-        for (SidebarAction ext : ExtensionRegistry.sidebarActions()) {
+        for (SidebarAction ext : java.util.Collections.<SidebarAction>emptyList()) {
             if (ext == null || ext.id() == null) continue;
             boolean present = false;
             for (SidebarEntry e : entries) {

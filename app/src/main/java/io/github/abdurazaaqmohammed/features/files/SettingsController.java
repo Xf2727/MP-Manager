@@ -227,8 +227,8 @@ public class SettingsController {
         });
         checkUpdateNow.setVisibility(checkForUpdates ? View.GONE : View.VISIBLE);
         checkUpdateNow.setOnClickListener(v1 -> UpdateUtil.checkForUpdates(true, activity));
-        settingsDialog.findViewById(R.id.about).setOnClickListener(v -> new UIHelper(activity).showAboutDialog());
-        setupPluginSettings(settingsDialog, settings);
+        settingsDialog.findViewById(R.id.about).setVisibility(View.GONE);
+        sidebarPluginsToggle.setVisibility(View.GONE); settings.edit().putBoolean("sidebar_show_plugins", false).apply();
         setupCollapsibleSections(settingsDialog);
     }
 
