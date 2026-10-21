@@ -48,14 +48,19 @@ public class UpdateUtil {
     private static final Pattern VERSION_TAG =
             Pattern.compile("^v?(\\d+(?:\\.\\d+)*)$");
 
-    /** The app's own APK asset, e.g. MP-Manager.1.0.9.apk. */
-    private static final String APP_APK_PREFIX = "mp-manager.";
+    private static final String APP_APK_PREFIX = "codex manager-";
+    private static final Pattern APK_VERSION = Pattern.compile(
+            "^Codex Manager-(\\d+(?:\\.\\d+)*)\\.apk$", Pattern.CASE_INSENSITIVE);
+    private static final String RELEASES_API =
+            "https://api.github.com/repos/Xf2727/MP-Manager/releases";
+    private static final String REPOSITORY_URL = "https://github.com/Xf2727/MP-Manager";
 
     /** An MP-Manager release: newest first, tag, APK asset and changelog. */
     private static final class AppRelease {
         String version;
         String apkName;
         String apkUrl;
+        String releaseUrl;
         String changelog;
     }
 
@@ -77,22 +82,8 @@ public class UpdateUtil {
                     if (toast) Extensions.showMessage(context, R.string.no_update_found);
                     return;
                 }
-                char[] curr = TextUtils.isEmpty(currentVer) ? new char[] { '1', '0', '9' }
-                        : currentVer.replace(".", "").toCharArray();
-                char[] latest = release.version.replace(".", "").toCharArray();
-                boolean newVer = false;
-                int maxLength = Math.max(curr.length, latest.length);
-                for (int i = 0; i < maxLength; i++) {
-                    char currChar = i < curr.length ? curr[i] : '0';
-                    char latestChar = i < latest.length ? latest[i] : '0';
-
-                    if (latestChar > currChar) {
-                        newVer = true;
-                        break;
-                    } else if (latestChar < currChar) {
-                        break;
-                    }
-                }
+                boolean newVer = compareVersions(release.version,
+                        TextUtils.isEmpty(currentVer) ? "1.0.9" : currentVer) > 0;
                 if (!newVer) {
                     if (toast) Extensions.showMessage(context, R.string.no_update_found);
                     return;
@@ -129,7 +120,7 @@ public class UpdateUtil {
                                             })
                                     .setNegativeButton("Go to GitHub Release", (dialog, which) -> context
                                             .startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(
-                                                    "https://github.com/AbdurazaaqMohammed/MP-Manager/releases/tag/" + release.version))))
+                                                    release.releaseUrl))))
                                     .setNeutralButton(rss.getString(android.R.string.cancel), null).create();
                     alertDialog.setOnDismissListener(dialog -> prefs.edit()
                             .putString(PREF_LAST_VER_CHECKED, release.version).apply());
@@ -146,19 +137,19 @@ public class UpdateUtil {
     }
 
     /**
-     * Newest release that is actually the app: a version tag plus an
-     * MP-Manager.*.apk asset. The repo also hosts distribution releases
-     * (tool-packs, native-tools) that share this API but are not app
-     * updates, so they must not be offered as one.
+     * Select the newest app release by its versioned APK asset. The rolling
+     * latest-build prerelease is accepted alongside numbered releases.
      */
     private static AppRelease latestAppRelease(String json) throws Exception {
         JSONArray releases = new JSONArray(json);
+        AppRelease newest = null;
         for (int i = 0; i < releases.length(); i++) {
             JSONObject release = releases.optJSONObject(i);
             if (release == null) continue;
+            if (release.optBoolean("draft", false)) continue;
             String tag = release.optString("tag_name", "").trim();
             Matcher tagMatcher = VERSION_TAG.matcher(tag);
-            if (!tagMatcher.find()) continue;
+            if (!tagMatcher.find() && !"latest-build".equals(tag)) continue;
             JSONArray assets = release.optJSONArray("assets");
             if (assets == null) continue;
             for (int j = 0; j < assets.length(); j++) {
@@ -166,16 +157,41 @@ public class UpdateUtil {
                 if (asset == null) continue;
                 String name = asset.optString("name", "");
                 String url = asset.optString("browser_download_url", "");
-                if (!name.toLowerCase().startsWith(APP_APK_PREFIX) || url.isEmpty()) continue;
+                Matcher apkMatcher = APK_VERSION.matcher(name);
+                if (!name.toLowerCase(java.util.Locale.ROOT).startsWith(APP_APK_PREFIX)
+                        || !apkMatcher.matches() || url.isEmpty()) continue;
                 AppRelease out = new AppRelease();
-                out.version = tagMatcher.group(1);
+                out.version = apkMatcher.group(1);
                 out.apkName = name;
                 out.apkUrl = url;
+                out.releaseUrl = release.optString("html_url", REPOSITORY_URL + "/releases");
                 out.changelog = release.optString("body", "");
-                return out;
+                if (newest == null || compareVersions(out.version, newest.version) > 0) {
+                    newest = out;
+                }
             }
         }
-        return null;
+        return newest;
+    }
+
+    private static int compareVersions(String left, String right) {
+        String[] leftParts = left.split("\\.");
+        String[] rightParts = right.split("\\.");
+        int count = Math.max(leftParts.length, rightParts.length);
+        for (int i = 0; i < count; i++) {
+            long leftPart = i < leftParts.length ? parseVersionPart(leftParts[i]) : 0;
+            long rightPart = i < rightParts.length ? parseVersionPart(rightParts[i]) : 0;
+            if (leftPart != rightPart) return Long.compare(leftPart, rightPart);
+        }
+        return 0;
+    }
+
+    private static long parseVersionPart(String part) {
+        try {
+            return Long.parseLong(part);
+        } catch (NumberFormatException ignored) {
+            return 0;
+        }
     }
 
     private static String read(HttpURLConnection conn) throws IOException {
@@ -191,8 +207,10 @@ public class UpdateUtil {
 
     @NonNull
     private static HttpURLConnection getHttpURLConnection() throws IOException {
-        HttpURLConnection conn = (HttpURLConnection) new URL("https://api.github.com/repos/AbdurazaaqMohammed/MP-Manager/releases").openConnection();
+        HttpURLConnection conn = (HttpURLConnection) new URL(RELEASES_API).openConnection();
         conn.setRequestMethod("GET");
+        conn.setConnectTimeout(15000);
+        conn.setReadTimeout(15000);
         conn.setRequestProperty("User-Agent",
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 Edg/128.0.0.0");
         conn.setRequestProperty("Accept", "application/vnd.github+json");
